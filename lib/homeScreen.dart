@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -72,7 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-
+                    setState(() {
+                      back();
+                    });
                   },
                   child: Text(
                     "Payment Done",
@@ -88,8 +91,25 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void exitDialog()
   {
-    AlertDialog(
-      title: Text("Sure to want exit ?"),
+    showDialog(
+      context: context,
+      builder: (context) {
+        return
+        AlertDialog(
+          title: Text("Sure to want exit ?",style: TextStyle(color: Colors.black,fontSize: 15),),
+          actions: [
+            ElevatedButton(onPressed: () {
+              setState(() {
+                exit(0);
+              });
+            }, child: Text("Yes"),),
+            ElevatedButton(onPressed: () {
+
+            }, child: Text("No"),),
+          ],
+        );
+      },
+
     );
   }
 
